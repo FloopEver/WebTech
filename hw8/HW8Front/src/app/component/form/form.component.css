@@ -1,0 +1,26 @@
+.clearfix{
+    clear: both;
+}
+
+ 
+#alertMsgDiv{
+    /* width: 60%; */
+    text-align: center;
+    /* margin: 20px auto; */
+    font-size: 20px;
+}
+
+
+.container{
+    margin-bottom: 120px;
+    width: 60%;
+    padding: 0;
+}
+
+#clearBnt:hover{
+    color: black;
+}
+
+#outdiv{
+    margin: 3px;
+}

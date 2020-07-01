@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">eBay Catalog Search</string>
+    <string name="keyword_text">Keyword</string>
+    <string name="keyword_input">Enter Keyword</string>
+    <string name="button_search">SEARCH</string>
+    <string name="button_clear">CLEAR</string>
+    <string name="price_range_text">Price Range</string>
+    <string name="min_price_input">Minimum Price</string>
+    <string name="max_price_input">Maximum Price</string>
+    <string name="condition_text">Condition</string>
+    <string name="new_check">New</string>
+    <string name="used_check">Used</string>
+    <string name="unspecified">Unspecified</string>
+    <string name="sort_by_text">Sort By</string>
+    <string name="loading_text">Searching Products...</string>
+    <string name="displayItems_title_name">Search Result</string>
+    <string name="product_picture">Product Picture</string>
+    <string name="testtext">00000000000000000000000000000000000000000000000000000000000000000000000000000000000</string>
+    <string name="no_records">No Records</string>
+    <string name="title_activity_item_view">Item View</string>
+    <string name="shipping_information">Shipping Information</string>
+    <string name="handling_time">Handling Time</string>
+    <string name="seller_information">Seller Information</string>
+    <string name="return_policies">Return Policies</string>
+</resources>

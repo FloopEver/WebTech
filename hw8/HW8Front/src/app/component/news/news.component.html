@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+  <div class="form-row">
+  <div class="form-group col-sm-1"></div>
+  <div class="form-group col-sm-12">
+
+
+    <div class="form-row ">
+          <div class="col-sm-1"></div>
+
+
+          <div class="form-group col-sm-4" style="float: left; font-size: 22px;">Results for {{keyword}}</div>
+
+          <div class="form-group col-sm-5" style="float: right;">
+
+            <pagination-controls (pageChange)="p = $event" style="float:right; font-size: 13px; white-space:nowrap;" ></pagination-controls>
+          </div>
+          <div class="col-sm-1"></div>
+
+    </div>
+
+
+  <ul style="padding: 0;">
+      <div *ngFor="let item of newsdata | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">  
+      <!-- {{item | json}}  -->
+      <form role="form">
+      <div class="form-row">
+        <div class="col-sm-1"></div>
+        <div class="col" id="card">
+          <div class="form-row">
+              <div class="imgDiv form-group col-sm-3">
+          <img [src]='item.Image' style="max-height: 250px;" alt="">
+              </div>
+        <div class="form-group col-sm-9" style="margin: 0;">
+            <div id="dataTop" class="form-group" style="margin: 0;">
+                <a href="{{item.Link}}" target="_blank" style="font-size: 20px"> <div>{{item.Title}}</div></a>
+                <div><strong>Price:</strong> ${{item.Price}}</div>
+                <div style="float: left; font-style:italic;">{{item.Location}}</div>
+                <div style="float: left;">
+                  <button class="btn" id={{item.BtnID}} type="button" data-toggle="collapse"   [attr.data-target]="'#test' + i" aria-expanded="false" aria-controls=item.DivId (click)="extend($event)">
+                    Show Detail
+                  </button>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div id="test{{i}}" class="collapse form-group" style="margin: 0; font-size: 12px;">
+                  <mat-tab-group>
+                    <mat-tab label="Basic Info">
+                      <div class="form-row">
+                      <div class="" style="margin-right: 20px;">
+                        <div class="form-group">
+                          <strong>Category Name</strong>
+                        </div>
+                        <div class="form-group">
+                          <strong>Condition</strong>
+                        </div>
+                      </div>
+                      <div class="">
+                          <div class="form-group">
+                           {{item.Category}}
+                        </div>
+                          <div class="form-group">
+                          {{item.Condition}}
+                      </div>
+                    </div>
+                  </div>
+                    </mat-tab>
+                    <mat-tab label="Shipping Info">
+                      <div class="form-row">
+                        <div class="" style="margin-right: 20px;">
+                          <div class="form-group">
+                            <strong>ShippingType</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>Shipping cost</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>Shiptolocations</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>ExpeditedShipping</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>OneDayShippingAvailable</strong>
+                          </div>
+                          </div>
+                          <div class="">
+                          <div class="form-group">
+                          {{item.ShippingType}}
+                          </div>
+                          <div class="form-group">
+                          {{item.ShippingCost}}
+                          </div>
+                          <div class="form-group">
+                          {{item.ShiptoLocations}}
+                          </div>
+                          <div class="form-group" style="margin-bottom: 2px;">
+                          <div *ngIf="item.ExpeditedShipping=='true'" style="color: green; " ><span class="material-icons">done</span></div>
+                          <div *ngIf="item.ExpeditedShipping=='false'" style="color: red; " ><span class="material-icons">close</span></div>
+                          </div> 
+                          <div class="form-group">
+                          <div *ngIf="item.OneDayShippingAvailable=='true'" style="color: green; "><span class="material-icons">done</span></div>
+                          <div *ngIf="item.OneDayShippingAvailable=='false'" style="color: red; "><span class="material-icons">close</span></div>
+                          </div>
+                      </div>
+                    </div>
+                    </mat-tab>
+                    <mat-tab label="Listing Info" >
+                      <div class="form-row">
+                        <div class="" style="margin-right: 20px;">
+                          <div class="form-group">
+                            <strong>BestOfferEnabled</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>BuyItNowAvailable</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>ListingType</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>Gift</strong>
+                          </div>
+                          <div class="form-group">
+                            <strong>WatchCount</strong>
+                          </div>
+                          </div>
+                          <div class="">
+                            <div class="form-group" style="margin-bottom: 2px;">
+                              <div *ngIf="item.BestOfferEnabled=='true'" style="color: green; "><span class="material-icons">done</span></div>
+                              <div *ngIf="item.BestOfferEnabled=='false'" style="color: red; "><span class="material-icons">close</span></div>
+                              </div> 
+                              <div class="form-group" style="margin-bottom: 2px;">
+                              <div *ngIf="item.BuyItNowAvailable=='true'" style="color: green; "><span class="material-icons">done</span></div>
+                              <div *ngIf="item.BuyItNowAvailable=='false'" style="color: red; "><span class="material-icons">close</span></div>
+                              </div>
+                          <div class="form-group" style="margin-top: 10px">
+                          {{item.ListingType}}
+                          </div>
+                          <div class="form-group" style="margin-bottom: 2px;">
+                          <div *ngIf="item.Gift=='true'" style="color: green; "><span class="material-icons">done</span></div>
+                          <div *ngIf="item.Gift=='false'" style="color: red; "><span class="material-icons">close</span></div>
+                          </div> 
+                          <div class="form-group" style="margin-top: 4px">
+                            {{item.WatchCount}}
+                            </div>
+                      </div>
+                    </div>
+                    </mat-tab>
+                  </mat-tab-group>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+      </div>
+        </div>
+          </div>
+        <div class="col-sm-1"></div>
+      </div>
+      </form>
+      <br>
+      </div>
+  </ul>
+</div>
+</div>
+</body>
+</html>
+
+     
+ 

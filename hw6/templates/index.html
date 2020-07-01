@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en-US" style="scroll-behavior: smooth;">
+    <head>
+        <link rel="stylesheet" href="../static/css/ind.css">
+        <script src="../static/js/ind.js"></script>
+
+        <meta charset="UTF-8">
+        <title>Homework 6</title>
+    </head>
+    <body>
+        <div id="head"></div>
+        <div class="title">
+        <div><a href="https://www.ebay.com"><img src="https://www.csci571.com/hw/hw6/images/eBayLogo.png" alt="Ebay.com" class = "imgtitle" /></a>Shopping</div>
+        </div>
+    
+        <div class="div1">
+            <form action="" method="GET">
+                <table>
+                    <tr><td>
+                        <!-- Key words -->
+                        <label for="key_words"><strong>Key Words</strong><strong style="color: red">*</strong><strong>:</strong> </label>
+
+                        {% if info.key_words %}
+                            <input type="text" id="key_words" name="key_words" value='{{ info.key_words }}' required style="margin-left: 3px;">
+                        {% else %}
+                            <input type="text" id="key_words" name="key_words" value="" required>
+                        {% endif %} 
+                    </td></tr>
+
+                    <tr><td>
+                        <!-- Price Range -->
+                        <label for="price_range"><strong>Price Range: </strong></label>
+                        &nbspFrom&nbsp 
+                        {% if info.min_price %}
+                            <input type="number" id="MinPrice" name="MinPrice" class="pr" value="{{ info.min_price }}">
+                        {% else %}
+                            <input type="number" id="MinPrice" name="MinPrice" class="pr">
+                        {% endif %}    
+
+                        &nbspto&nbsp 
+                        
+                        {% if info.max_price %}
+                            <input type="number" id="MaxPrice" name="MaxPrice" class="pr" value="{{ info.max_price }}">
+                        {% else %}
+                            <input type="number" id="MaxPrice" name="MaxPrice" class="pr">
+                        {% endif %}    
+                    </td></tr>
+                    
+                    <tr><td>
+                        <!-- Condition -->
+                        <label for="condition"><strong>Condition: </strong></label>
+
+                        {% if info.c1 %}
+                            <input type="checkbox" id="condition1" name="condition1" value="New" checked>
+                        {% else %}
+                            <input type="checkbox" id="condition1" name="condition1" value="New">
+                        {% endif %}
+                        <label for="condition1"> New</label>
+
+                        {% if info.c2 %}
+                            <input type="checkbox" id="condition2" name="condition2" value="Used" checked>
+                        {% else %}
+                            <input type="checkbox" id="condition2" name="condition2" value="Used">
+                        {% endif %}
+                        <label for="condition2"> Used</label>
+
+                        {% if info.c3 %}
+                            <input type="checkbox" id="condition3" name="condition3" value="Very Good" checked>
+                        {% else %}
+                            <input type="checkbox" id="condition3" name="condition3" value="Very Good">
+                        {% endif %}
+                        <label for="condition3"> Very Good</label>
+
+                        {% if info.c4 %}
+                            <input type="checkbox" id="condition4" name="condition4" value="Good" checked>
+                        {% else %}
+                            <input type="checkbox" id="condition4" name="condition4" value="Good">
+                        {% endif %}
+                        <label for="condition4"> Good</label>
+                        
+                        {% if info.c5 %}
+                            <input type="checkbox" id="condition5" name="condition5" value="Accepttable" checked>
+                        {% else %}
+                            <input type="checkbox" id="condition5" name="condition5" value="Accepttable">
+                        {% endif %}
+                        <label for="condition5"> Acceptable</label>
+                    </td></tr>
+
+                    <tr><td>
+                        <!--Seller-->
+                        <label for="seller"><strong>Seller: </strong></label>
+
+                        {% if info.seller %}
+                            <input type="checkbox" id="seller" name="seller" value="return" checked>
+                        {% else %}
+                            <input type="checkbox" id="seller" name="seller" value="return">
+                        {% endif %}
+                        <label for="seller"> Return Accepted</label><br />
+                    </td></tr>
+
+                    <tr><td>
+                        <!--Shipping-->
+                        <label for="shipping"><strong>Shipping: </strong></label>
+
+                        {% if info.s1 %}
+                            <input type="checkbox" id="shipping1" name="shipping1" value="free" checked>
+                        {% else %}
+                            <input type="checkbox" id="shipping1" name="shipping1" value="free">
+                        {% endif %}
+                        <label for="shipping1"> Free</label>
+
+                        {% if info.s2 %}
+                            <input type="checkbox" id="shipping2" name="shipping2" value="expedited" checked>
+                        {% else %}
+                            <input type="checkbox" id="shipping2" name="shipping2" value="expedited">
+                        {% endif %}
+                        <label for="shipping2"> Expedited</label>
+                    </td></tr>
+
+                    
+                    <tr><td>
+                        <!--Sort By-->
+                        <label for="sort"><strong>Sort by: </strong></label>
+
+                        <select name="sorts" id="sorts" class="sorts">
+                            {% if info.sorts == "BestMatch" %}
+                                <option value="BestMatch" selected>Best Match</option>
+                            {% else %}
+                                <option value="BestMatch">Best Match</option>
+                            {% endif %}
+
+                            {% if info.sorts == "CurrentPriceHighest" %}
+                                <option value="CurrentPriceHighest" selected>Price: highest first</option>
+
+                            {% else %}
+                                <option value="CurrentPriceHighest">Price: highest first</option>
+                            {% endif %}
+
+                            {% if info.sorts == "PricePlusShippingHighest" %}
+                                <option value="PricePlusShippingHighest" selected>Price + Shipping: highest first</option>
+                            {% else %}
+                                <option value="PricePlusShippingHighest">Price + Shipping: highest first</option>
+                            {% endif %}
+                            {% if info.sorts == "PricePlusShippingLowest" %}
+                                <option value="PricePlusShippingLowest" selected>Price + Shipping: lowest first</option>
+                            {% else %}
+                                <option value="PricePlusShippingLowest">Price + Shipping: lowest first</option>
+                            {% endif %}
+                        </select>
+                    </td></tr>
+                    
+                    <tr><td>
+						<!-- Clear/Submit -->
+                
+                		<button class="btton" type="button" onclick="clearValues()">Clear</button>
+               			<a href="#head"><input class="btton" type="submit" value="Search" onclick="testValues()"></a>
+
+                    </td></tr>
+
+                </table>
+            </form>
+
+        </div>
+
+        <div id="div2">
+            {% if info.help %}
+                {% if data.total == "0" %}
+                    <div><h2>No Results Found</h2></div>
+                    
+                {% else %}
+                    <div class="div3">
+                        
+                        <h2>{{ data.total }} Results found for <p1 style = "font-style:italic;">{{ info.key_words }}</p1></h2><hr />
+
+
+                        
+                        {% for element in ls %}
+
+                        <!--Item 0 -->
+                            {% if element.index == "item0" %}    
+                            <div id="{{ element.index }}" class="card1">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;">{{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+                                    
+                                    </div>
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                        {% endif %}
+
+
+
+
+
+                            {% if element.index == "item1" %}    
+                                <div id="{{ element.index }}" class="card1">
+                                    <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                        
+                                        {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            {% if element.url_image == 'false' %}
+                                                <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                            {% else %}
+                                                <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                            {% endif %}
+                                        {% endif %}
+
+
+                                        
+                                        <div style="padding-left: 220px; height: 280px;">
+                                            <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                            <p>Category: <span style = "font-style:italic;">{{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                            {% if element.top_rate == 'true' %}
+                                                <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                            {% else %}
+
+                                                {% if element.condition != "0" %}
+                                                    <p>Condition: {{ element.condition }}</p>
+                                                {% endif %}
+                                            {% endif %}
+
+
+
+                                            <!--------------------->
+                                            <div id="dis_{{ element.index }}" style="display: none;">
+                                                {% if element.return == "true" %}
+                                                    <p>Seller <strong>accepts</strong> returns</p>
+                                                {% endif %}
+
+
+                                                {% if element.free_ship == "1" %}
+                                                    {% if element.exp_ship == "1" %}
+                                                        <p>Free Shipping -- Expedited Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                                
+                                                {% if element.free_ship == "1" %}
+                                                    {% if element.exp_ship == "0" %}
+                                                        <p>Free Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                                    
+                                                {% if element.exp_shipping == "1" %}
+                                                    {% if element.free_ship == "0" %}
+                                                        <p>Expedited Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                            </div>
+                                            {% if element.ship_price == "0.0" %}
+                                                <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                            {% else %}
+                                                <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                            {% endif %}
+
+                                          
+                                        </div>
+
+                                        
+                                    </span><br />
+                                    <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                                </div>
+                            {% endif %}
+
+
+                            {% if element.index == "item2" %}    
+                             <div id="{{ element.index }}" class="card1">
+                                    <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                        
+                                        {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            {% if element.url_image == 'false' %}
+                                                <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                            {% else %}
+                                                <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                            {% endif %}
+                                        {% endif %}
+
+
+                                        
+                                        <div style="padding-left: 220px; height: 280px;">
+                                            <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                            <p>Category: <span style = "font-style:italic;">{{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                            {% if element.top_rate == 'true' %}
+                                                <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                            {% else %}
+
+                                                {% if element.condition != "0" %}
+                                                    <p>Condition: {{ element.condition }}</p>
+                                                {% endif %}
+                                            {% endif %}
+
+
+
+                                            <!--------------------->
+                                            <div id="dis_{{ element.index }}" style="display: none;">
+                                                {% if element.return == "true" %}
+                                                    <p>Seller <strong>accepts</strong> returns</p>
+                                                {% endif %}
+
+
+                                                {% if element.free_ship == "1" %}
+                                                    {% if element.exp_ship == "1" %}
+                                                        <p>Free Shipping -- Expedited Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                                
+                                                {% if element.free_ship == "1" %}
+                                                    {% if element.exp_ship == "0" %}
+                                                        <p>Free Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                                    
+                                                {% if element.exp_shipping == "1" %}
+                                                    {% if element.free_ship == "0" %}
+                                                        <p>Expedited Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                            </div>
+                                            {% if element.ship_price == "0.0" %}
+                                                <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                            {% else %}
+                                                <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                            {% endif %}
+
+
+
+                                            
+                                        </div>
+
+
+                                        
+                                    </span><br />
+                                    <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                                </div>
+                            {% endif %}
+
+                            {% if element.index == "item3" %}    
+                             <div id="{{ element.index }}" class="card1" style="display: none;">
+                                    <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                        
+                                        {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            {% if element.url_image == 'false' %}
+                                                <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                            {% else %}
+                                                <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                            {% endif %}
+                                        {% endif %}
+
+
+                                        
+                                        <div style="padding-left: 220px; height: 280px;">
+                                            <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                            <p>Category: <span style = "font-style:italic;">{{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                            {% if element.top_rate == 'true' %}
+                                                <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                            {% else %}
+
+                                                {% if element.condition != "0" %}
+                                                    <p>Condition: {{ element.condition }}</p>
+                                                {% endif %}
+                                            {% endif %}
+
+
+
+                                            <!--------------------->
+                                            <div id="dis_{{ element.index }}" style="display: none;">
+                                                {% if element.return == "true" %}
+                                                    <p>Seller <strong>accepts</strong> returns</p>
+                                                {% endif %}
+
+
+                                                {% if element.free_ship == "1" %}
+                                                    {% if element.exp_ship == "1" %}
+                                                        <p>Free Shipping -- Expedited Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                                
+                                                {% if element.free_ship == "1" %}
+                                                    {% if element.exp_ship == "0" %}
+                                                        <p>Free Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+                                                    
+                                                {% if element.exp_shipping == "1" %}
+                                                    {% if element.free_ship == "0" %}
+                                                        <p>Expedited Shipping available</p>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                            </div>
+                                            {% if element.ship_price == "0.0" %}
+                                                <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                            {% else %}
+                                                <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                            {% endif %}
+
+
+
+                                            
+                                        </div>
+
+                                     
+                                    </span><br />
+                                    <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                                </div>
+                            {% endif %}
+
+
+                            {% if element.index == "item4" %}    
+                            <div id="{{ element.index }}" class="card1" style="display: none;">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;"> {{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+
+
+                                        
+                                    </div>
+
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                            {% endif %}
+
+                            {% if element.index == "item5" %}    
+                            <div id="{{ element.index }}" class="card1" style="display: none;">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;"> {{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+
+
+                                        
+                                    </div>
+
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                            {% endif %}
+
+                            {% if element.index == "item6" %}    
+                            <div id="{{ element.index }}" class="card1" style="display: none;">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;"> {{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+
+
+                                        
+                                    </div>
+
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                            {% endif %}
+
+                            {% if element.index == "item7" %}    
+                            <div id="{{ element.index }}" class="card1" style="display: none;">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;"> {{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+
+
+                                        
+                                    </div>
+
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                            {% endif %}
+
+                            {% if element.index == "item8" %}    
+                            <div id="{{ element.index }}" class="card1" style="display: none;">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;"> {{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+
+
+                                        
+                                    </div>
+
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                            {% endif %}
+
+                            {% if element.index == "item9" %}    
+                            <div id="{{ element.index }}" class="card1" style="display: none;">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;"> {{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+
+
+                                        
+                                    </div>
+
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                            {% endif %}
+
+                            {% if element.index == "item10" %}    
+                            <div id="{{ element.index }}" class="card1" style="display: none;">
+                                <span class="b" onclick="extendCard1('{{ element.index }}', '{{ element.current_price }}', '{{ element.ship_price }}', '{{ element.location }}')">
+                                    
+                                    {% if element.url_image == "https://thumbs1.ebaystatic.com/pict/04040_0.jpg" %}
+                                        <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                    {% else %}
+                                        {% if element.url_image == 'false' %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="https://www.csci571.com/hw/hw6/images/ebay_default.jpg" style="width: 100px; height: 40px;" /></div>
+                                        {% else %}
+                                            <div id="img1_{{ element.index }}" class="img1"><img src="{{ element.url_image }}" /></div>
+                                        {% endif %}
+                                    {% endif %}
+
+
+                                    
+                                    <div style="padding-left: 220px; height: 280px;">
+                                        <p id="title_{{ element.index }}" class="fold"><a href="{{ element.redirection }}"><strong><u>{{ element.title }}</u></strong></a></p>
+
+                                        <p>Category: <span style = "font-style:italic;"> {{ element.category }}</span> <a href="{{ element.redirection }}"><img src="https://www.csci571.com/hw/hw6/images/redirect.png " style="width: 20px; height: 20px; margin-bottom: 3px; margin-left: 3px;" /></a></p>
+
+                                        {% if element.top_rate == 'true' %}
+                                            <p style="padding-bottom: 3px;">Condition: {{ element.condition }}<img class="rate" src="https://www.csci571.com/hw/hw6/images/topRatedImage.png" /></p>
+                                        {% else %}
+
+                                            {% if element.condition != "0" %}
+                                                <p>Condition: {{ element.condition }}</p>
+                                            {% endif %}
+                                        {% endif %}
+
+
+
+                                        <!--------------------->
+                                        <div id="dis_{{ element.index }}" style="display: none;">
+                                            {% if element.return == "true" %}
+                                                <p>Seller <strong>accepts</strong> returns</p>
+                                            {% endif %}
+
+
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "1" %}
+                                                    <p>Free Shipping -- Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                            {% if element.free_ship == "1" %}
+                                                {% if element.exp_ship == "0" %}
+                                                    <p>Free Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+                                                
+                                            {% if element.exp_shipping == "1" %}
+                                                {% if element.free_ship == "0" %}
+                                                    <p>Expedited Shipping available</p>
+                                                {% endif %}
+                                            {% endif %}
+
+                                        </div>
+                                        {% if element.ship_price == "0.0" %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }}</strong></p>
+                                        {% else %}
+                                            <p id="price_{{ element.index }}"><strong>Price: ${{ element.current_price }} (+ ${{ element.ship_price }} for shipping)</strong></p>
+                                        {% endif %}
+
+
+
+                                        
+                                    </div>
+
+
+                                    
+                                </span><br />
+                                <div id="closeX_{{ element.index }}" style="display: none;"></div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                                        
+
+                    </div>
+                    <div class="show">
+                        <div class="show1">
+                            <a href="#tail"><button class="btton" id="show_more" type="button" onclick="showMore()" style="display: block; margin-top: 20px;">Show More</button></a>
+                            <a href="#head"><button class="btton" id="show_less" type="button" onclick="showLess()" style="display: none; margin-top: 20px;">Show Less</button></a>
+                        </div>
+                    </div>
+                    
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div id="tail"></div>
+    
+    </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+</head>
+<body>
+  <div class="row" id="outdiv" style=" font-size: 15px">
+    <div class="col-sm-2"></div>
+    <div class="container"  class="col" >
+        <div class="" style="text-align: center;">
+            <img src="../../../assets/img/eBayLogo.png" alt="">
+          </div>
+          
+          
+        <form [formGroup]="userForm" style="font-weight: bold;" (ngSubmit)="onSubmit()">
+            <div class="form-group row" >
+              <label for="input_Keyword" class="col-sm-2 col-form-label" style="white-space:nowrap;">Key Words<span style="color:red ">*</span></label>
+              <div class="col">
+                <input type="text" formControlName="input_Keyword" class="form-control" id="input_Keyword" placeholder="Enter keywords">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="price" class="col-sm-2 col-form-label" style="white-space:nowrap;">Price Range</label>
+              <div class="col">
+                  <input type="text" formControlName="input_MinPrice" class="form-control" id="input_MinPrice" placeholder="Min Price">
+              </div>
+              <div class="col">
+                  <input type="text" formControlName="input_MaxPrice" class="form-control" id="input_MaxPrice" placeholder="Max Price">
+              </div>
+            </div>
+            
+            <div class="form-group row">
+              <div class="col-sm-2 col-form-label" style="padding-top: 0px;">Condition</div>
+              <div class="col" >
+                  <div class="form-check form-check-inline">
+                  <input class="form-check-input" formControlName="condiCheck1" type="checkbox" id="condiCheck1" name="condition" value="New">
+                  <label class="form-check-label" for="condiCheck1">
+                    New
+                  </label>    
+                  </div>
+                  <div class="form-check form-check-inline">
+                  <input class="form-check-input" formControlName="condiCheck2" type="checkbox" id="condiCheck2" name="condition" value="Used">
+                  <label class="form-check-label" for="condiCheck2">
+                    Used
+                  </label>    
+                  </div>
+                  <div class="form-check form-check-inline">
+                  <input class="form-check-input" formControlName="condiCheck3" type="checkbox" id="condiCheck3" name="condition" value="Very Good">
+                  <label class="form-check-label" for="condiCheck3">
+                    Very Good
+                  </label>    
+                  </div>
+                  <div class="form-check form-check-inline">
+                  <input class="form-check-input" formControlName="condiCheck4" type="checkbox" id="condiCheck4" name="condition" value="Good">
+                  <label class="form-check-label" for="condiCheck4">
+                    Good
+                  </label>    
+                  </div>
+                  <div class="form-check form-check-inline">
+                  <input class="form-check-input" formControlName="condiCheck5" type="checkbox" id="condiCheck5" name="condition" value="Acceptable">
+                  <label class="form-check-label" for="condiCheck5">
+                    Acceptable
+                  </label>    
+                  </div>  
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-2 col-form-label"  style="padding-top: 0px;">Seller</div>
+                <div class="col">
+                  <div class="form-check">
+                    <input class="form-check-input" formControlName="sellerCheck" type="checkbox" id="sellerCheck">
+                    <label class="form-check-label" for="sellerCheck">
+                      Return Accepted
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-2 col-form-label" style="padding-top: 0px;">Shipping</div>
+                <div class="col">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" formControlName="shipCheck1" type="checkbox" id="shipCheck1" name="shipping" value="Free">
+                        <label class="form-check-label" for="shipCheck1">
+                          Free
+                        </label>    
+                        </div>
+                        <div class="form-check form-check-inline">
+                        <input class="form-check-input" formControlName="shipCheck2" type="checkbox" id="shipCheck2" name="shipping" value="Expedited">
+                        <label class="form-check-label" for="shipCheck2">
+                          Expedited
+                        </label>    
+                        </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label" style="white-space:nowrap;">Sort Order</label>
+                  <div class="col">
+                        <select  formControlName="sort" class="form-control" id="sort">
+                          <option value="Best Match" selected>BestMatch</option>
+                          <option value="Price: highest first">CurrentPriceHighest</option>
+                          <option value="Price + Shipping: highest first">PricePlusShippingHighest</option>
+                          <option value="Price + Shipping: lowest first">PricePlusShippingLowest</option>
+                        </select>
+                  </div>
+              </div>
+              <div class="form-group float-right">
+              <button type="submit" class="btn btn-primary" value="Search"><img src="../../../assets/img/search.svg">Search</button> &nbsp;
+              <button type="reset" class="btn btn-secondary" value="Clear" id="clearBnt" (click)="reset()"><img src="../../../assets/img/clear.svg" alt="">Clear</button>
+              </div>
+          </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+    <br>
+
+
+
+    <div class="clearfix"></div>
+    <div class="row">
+      <div class="col-sm-2"></div>
+    <div id="alertMsgDiv" class="col-sm-8"></div>
+    <div class="col-sm-2"></div>
+  </div>
+</body>
+</html>

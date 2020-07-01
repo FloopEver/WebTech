@@ -1,0 +1,33 @@
+.clearfix{
+    clear: both;
+}
+
+.infoTitle{
+    text-align: center;
+}
+
+.imgDiv{
+    vertical-align: middle;
+    text-align: center;
+}
+
+.btn{
+    background-color: aliceblue;
+    margin-left: 15px;
+    padding: 5px;
+}
+
+#databottom{
+    margin-top: 10px;
+}
+
+#card{
+    background-color: rgb(223, 221, 221); 
+    padding: 10px 20px;
+}
+
+.form-row{
+    margin:0px;
+    margin-top: 7px;
+}
+

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/KeywordTextLayout"
+        android:layout_width="110dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/KeywordText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/keyword_text"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/app_blue_eBay"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/KeywordLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        app:hintEnabled="false"
+        app:errorTextAppearance="@style/ErrorTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/KeywordTextLayout">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Keyword"
+            android:layout_width="358dp"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:hint="@string/keyword_input"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/PriceRangeTextLayout"
+        android:layout_width="361dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/KeywordLayout">
+
+        <TextView
+            android:id="@+id/PriceRangeText"
+            android:layout_width="99dp"
+            android:layout_height="23dp"
+            android:text="@string/price_range_text"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/app_blue_eBay"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/MinimumPriceLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PriceRangeTextLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MinimumPrice"
+            android:layout_width="137dp"
+            android:layout_height="38dp"
+            android:ems="10"
+            android:hint="@string/min_price_input"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/MaximumPriceLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="4dp"
+        app:hintEnabled="false"
+        app:errorTextAppearance="@style/ErrorTheme"
+        app:layout_constraintStart_toStartOf="@+id/MinimumPriceLayout"
+        app:layout_constraintTop_toBottomOf="@+id/PriceRangeTextLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/MaximumPrice"
+            android:layout_width="137dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="157dp"
+            android:ems="10"
+            android:hint="@string/max_price_input"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/ConditionTextLayout"
+        android:layout_width="114dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MaximumPriceLayout">
+
+        <TextView
+            android:id="@+id/ConditionText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/condition_text"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/app_blue_eBay"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/CheckboxLayout"
+        android:layout_width="347dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ConditionTextLayout">
+
+        <CheckBox
+            android:id="@+id/NewCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            android:textStyle="italic"
+            android:text="@string/new_check" />
+
+        <CheckBox
+            android:id="@+id/UsedCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            android:textStyle="italic"
+            android:text="@string/used_check" />
+
+        <CheckBox
+            android:id="@+id/UnspecifiedCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textStyle="italic"
+            android:text="@string/unspecified" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/SortByTextLayout"
+        android:layout_width="349dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CheckboxLayout">
+
+        <TextView
+            android:id="@+id/SortByText"
+            android:layout_width="99dp"
+            android:layout_height="23dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/sort_by_text"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/app_blue_eBay"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="308dp"
+            android:layout_height="25dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ButtonLayout"
+        android:layout_width="324dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SortByTextLayout">
+
+        <Button
+            android:id="@+id/SearchButton"
+            android:layout_width="153dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:background="@color/app_blue_eBay"
+            android:onClick="sendMessage"
+            android:text="@string/button_search"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/ClearButton"
+            android:layout_width="153dp"
+            android:layout_height="match_parent"
+            android:background="@color/app_blue_eBay"
+            android:onClick="clear"
+            android:text="@string/button_clear"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

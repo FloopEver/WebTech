@@ -1,0 +1,9 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+- url: /
+  static_files: dist/HW8/index.html
+  upload: dist/HW8/index.html
+- url: /
+  static_dir: dist/HW8
